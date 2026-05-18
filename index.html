@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karina Souza — Social Media & Designer</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -29,32 +30,74 @@ body::after{
   opacity:.5;
 }
 
-/* NAV */
+/* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   display:flex;justify-content:space-between;align-items:center;
   padding:22px 64px;
   transition:background .4s,backdrop-filter .4s;
 }
-nav.scrolled{background:rgba(4,4,4,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:.5px}
+nav.scrolled{
+  background:rgba(4,4,4,.94);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-size:19px;font-weight:700;
+  color:var(--white);text-decoration:none;letter-spacing:.5px;
+}
 .nav-logo span{color:var(--pill2)}
 .nav-links{display:flex;gap:40px}
-.nav-links a{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+.nav-links a{
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .3s;
+}
 .nav-links a:hover{color:var(--white)}
 .nav-cta{
   padding:10px 22px;background:var(--btn-bg);color:#040404;
   font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
   text-decoration:none;border-radius:2px;transition:background .3s;
+  white-space:nowrap;
 }
 .nav-cta:hover{background:var(--btn-hover)}
 
-/* HERO */
+/* mobile menu button */
+.nav-burger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:none;border:none;padding:4px;
+}
+.nav-burger span{
+  display:block;width:24px;height:2px;
+  background:var(--muted);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+.nav-mobile{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(4,4,4,.98);z-index:190;
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:40px;
+}
+.nav-mobile.open{display:flex}
+.nav-mobile a{
+  font-family:'Playfair Display',serif;font-size:32px;font-weight:600;
+  color:var(--white);text-decoration:none;opacity:.7;transition:opacity .3s;
+}
+.nav-mobile a:hover{opacity:1}
+.nav-mobile-close{
+  position:absolute;top:28px;right:28px;
+  background:none;border:none;color:var(--muted);
+  font-size:28px;cursor:pointer;
+}
+
+/* ── HERO ── */
 .hero{
-  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;padding:120px 64px 80px;
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:120px 64px 80px;
   position:relative;overflow:hidden;gap:60px;
 }
+/* grid lines */
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:
@@ -62,6 +105,7 @@ nav.scrolled{background:rgba(4,4,4,.92);backdrop-filter:blur(18px);border-bottom
     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
   background-size:80px 80px;
   mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+  pointer-events:none;
 }
 .hero-glow{
   position:absolute;width:600px;height:600px;border-radius:50%;
@@ -69,66 +113,62 @@ nav.scrolled{background:rgba(4,4,4,.92);backdrop-filter:blur(18px);border-bottom
   top:50%;right:5%;transform:translateY(-50%);pointer-events:none;z-index:0;
 }
 .hero-left{position:relative;z-index:2}
+
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   padding:7px 16px;border:1px solid rgba(179,190,217,.25);border-radius:999px;
   font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pill2);
   margin-bottom:36px;background:rgba(179,190,217,.05);
 }
-.hero-eyebrow-dot{width:5px;height:5px;background:#4ade80;border-radius:50%;display:inline-block;animation:blink 2s infinite}
+.hero-eyebrow-dot{
+  width:5px;height:5px;background:#4ade80;
+  border-radius:50%;display:inline-block;
+  animation:blink 2s infinite;
+}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
 .hero-name{
   font-family:'Playfair Display',serif;
-  font-size:clamp(56px,7vw,96px);
+  font-size:clamp(52px,7vw,96px);
   font-weight:700;line-height:.95;
   color:var(--white);letter-spacing:-1px;
   margin-bottom:36px;
 }
 .hero-name em{font-style:italic;color:var(--pill2);display:block}
 
-/* ── HEADLINE com pills estilo da imagem ── */
+/* headline pill style */
 .hero-headline{
-  font-size:clamp(22px,2.8vw,32px);
-  font-weight:700;
-  color:var(--white);
-  line-height:1.45;
-  margin-bottom:48px;
-  letter-spacing:-.3px;
+  font-size:clamp(20px,2.8vw,32px);
+  font-weight:700;color:var(--white);
+  line-height:1.5;margin-bottom:48px;letter-spacing:-.3px;
 }
-.hero-headline .word-normal{font-weight:700;color:var(--white)}
-.hero-headline .word-italic{font-style:italic;font-family:'Playfair Display',serif;font-weight:600;color:var(--white)}
-.hero-headline .pill-outline{
-  display:inline-block;
-  border:2px solid var(--white);
-  border-radius:999px;
-  padding:2px 16px;
-  font-weight:700;
-  font-style:italic;
-  font-family:'Playfair Display',serif;
-  color:var(--white);
-  line-height:1.4;
-  margin:0 2px;
+.word-italic{
+  font-style:italic;font-family:'Playfair Display',serif;
+  font-weight:600;color:var(--white);
 }
-.hero-headline .pill-filled{
+.pill-outline{
   display:inline-block;
-  background:var(--pill2);
-  border-radius:999px;
-  padding:2px 16px;
-  font-weight:700;
-  color:#040404;
-  line-height:1.4;
-  margin:0 2px;
+  border:2px solid var(--white);border-radius:999px;
+  padding:1px 14px;font-weight:700;
+  font-style:italic;font-family:'Playfair Display',serif;
+  color:var(--white);line-height:1.5;margin:0 2px;
+}
+.pill-filled{
+  display:inline-block;
+  background:var(--pill2);border-radius:999px;
+  padding:1px 14px;font-weight:700;
+  color:#040404;line-height:1.5;margin:0 2px;
 }
 
 .hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .btn-main{
   display:inline-flex;align-items:center;gap:10px;
-  padding:16px 32px;background:var(--btn-bg);color:#040404;
+  padding:16px 28px;background:var(--btn-bg);color:#040404;
   font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
   text-decoration:none;border-radius:3px;transition:background .3s,transform .2s;
 }
 .btn-main:hover{background:var(--btn-hover);transform:translateY(-2px)}
+.btn-main svg{width:16px;height:16px;flex-shrink:0}
 .btn-ghost{
   display:inline-flex;align-items:center;gap:8px;
   font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
@@ -138,277 +178,320 @@ nav.scrolled{background:rgba(4,4,4,.92);backdrop-filter:blur(18px);border-bottom
 }
 .btn-ghost:hover{color:var(--white);border-color:var(--white)}
 
-/* HERO RIGHT — FOTO */
+/* hero photo */
 .hero-right{
   position:relative;z-index:2;
   display:flex;justify-content:center;align-items:flex-end;
 }
 .photo-wrap{
-  position:relative;width:100%;max-width:460px;
+  width:100%;max-width:460px;
+  position:relative;
 }
 .photo-wrap img{
-  width:100%;display:block;position:relative;z-index:1;
+  width:100%;display:block;
+  /* foto com fundo removido — sem filtros, sem gradientes */
 }
 
-/* TICKER */
+/* ── TICKER ── */
 .ticker-wrap{
-  overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  overflow:hidden;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
   background:var(--bg2);padding:16px 0;
 }
 .ticker{display:flex;animation:ticker 22s linear infinite;width:max-content}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .ticker-item{
-  display:flex;align-items:center;gap:16px;
-  padding:0 40px;
-  font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
-  white-space:nowrap;
+  display:flex;align-items:center;gap:16px;padding:0 40px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;
 }
 .ticker-item::after{content:'✦';color:var(--pill2);font-size:8px}
 
-/* SOBRE */
+/* ── SOBRE ── */
 .sobre{
   position:relative;overflow:hidden;padding:130px 64px;
-  display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
 }
-.sobre-bg{
+/* workspace photo como fundo */
+.sobre-bg-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  filter:brightness(.08) saturate(.4);
+  display:block;
+}
+.sobre-overlay{
   position:absolute;inset:0;
-  filter:brightness(.1) saturate(.5);
+  background:linear-gradient(135deg,rgba(4,4,4,.97) 50%,rgba(4,4,4,.85));
 }
-.sobre-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(4,4,4,.97) 55%,rgba(4,4,4,.82))}
 .sobre-left,.sobre-right{position:relative;z-index:2}
+
 .section-tag{
   font-size:11px;letter-spacing:3px;text-transform:uppercase;
   color:var(--pill2);margin-bottom:16px;
   display:flex;align-items:center;gap:12px;
 }
 .section-tag::before{content:'';width:28px;height:1px;background:var(--pill2)}
+
 h2{
   font-family:'Playfair Display',serif;
   font-size:clamp(32px,4vw,54px);font-weight:600;
   color:var(--white);line-height:1.1;letter-spacing:-.5px;margin-bottom:32px;
 }
 h2 em{font-style:italic;color:var(--pill2)}
+
 .sobre-text p{
   font-size:17px;font-weight:300;color:var(--muted);
   line-height:1.85;margin-bottom:20px;
 }
 .sobre-text p strong{color:var(--text);font-weight:500}
 
-.sobre-right{
-  display:flex;flex-direction:column;gap:0;
-}
-.sobre-img-wrap{
-  position:relative;border-radius:4px;overflow:hidden;
+/* workspace photo on the right */
+.sobre-right{display:flex;flex-direction:column;gap:2px}
+.sobre-img-box{
+  position:relative;border-radius:6px;overflow:hidden;
   border:1px solid var(--border);
 }
-.sobre-img-wrap img{
+.sobre-img-box img{
   width:100%;display:block;
-  filter:brightness(.7) saturate(.7);
-  transition:filter .5s;
+  /* clean photo, no extra filters */
 }
-.sobre-img-wrap:hover img{filter:brightness(.85) saturate(.9)}
 .sobre-img-caption{
   position:absolute;bottom:0;left:0;right:0;
-  padding:20px 24px;
-  background:linear-gradient(to top,rgba(4,4,4,.9),transparent);
-  font-size:13px;color:var(--muted);letter-spacing:.5px;
+  padding:18px 22px;
+  background:linear-gradient(to top,rgba(4,4,4,.85),transparent);
+  font-size:13px;color:rgba(240,237,232,.6);letter-spacing:.5px;
 }
-
-/* números lado direito */
-.sobre-numbers-row{
-  display:flex;gap:2px;margin-top:2px;
-}
-.number-card{
-  flex:1;padding:28px 24px;border:1px solid var(--border);
+.sobre-stats{display:flex;gap:2px}
+.stat-box{
+  flex:1;padding:24px 20px;
+  border:1px solid var(--border);border-top:none;
   background:rgba(255,255,255,.02);
-  transition:background .3s;border-top:none;
+  transition:background .3s;
 }
-.number-card:hover{background:rgba(179,190,217,.04)}
-.number-val{
+.stat-box:hover{background:rgba(179,190,217,.04)}
+.stat-val{
   font-family:'Playfair Display',serif;
-  font-size:44px;font-weight:700;line-height:1;
+  font-size:40px;font-weight:700;line-height:1;
   color:var(--pill2);margin-bottom:4px;
 }
-.number-label{font-size:12px;letter-spacing:.5px;color:var(--muted);font-weight:300;line-height:1.4}
+.stat-label{font-size:11px;color:var(--muted);font-weight:300;line-height:1.4}
 
-/* SERVIÇOS */
+/* ── SERVIÇOS ── */
 .servicos{padding:130px 64px;background:var(--bg)}
 .servicos-list{margin-top:64px;border-top:1px solid var(--border)}
 .servico-item{border-bottom:1px solid var(--border);overflow:hidden}
 .servico-header{
   display:flex;justify-content:space-between;align-items:center;
-  padding:36px 0;cursor:pointer;user-select:none;
+  padding:32px 0;cursor:pointer;user-select:none;
 }
 .servico-header:hover .servico-name{color:var(--pill2)}
-.servico-num{font-size:12px;letter-spacing:2px;color:var(--muted);width:48px;flex-shrink:0}
+.servico-num{
+  font-size:12px;letter-spacing:2px;color:var(--muted);
+  width:44px;flex-shrink:0;
+}
 .servico-name{
   font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3vw,36px);font-weight:600;
-  color:var(--white);flex:1;padding:0 24px;transition:color .3s;
+  font-size:clamp(20px,2.8vw,34px);font-weight:600;
+  color:var(--white);flex:1;padding:0 20px;transition:color .3s;
 }
 .servico-tags{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
 .servico-tag{
-  padding:5px 14px;border-radius:999px;
+  padding:5px 12px;border-radius:999px;
   font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
   border:1px solid var(--border);color:var(--muted);
 }
 .servico-arrow{
-  width:36px;height:36px;border:1px solid var(--border);border-radius:50%;
+  width:34px;height:34px;border:1px solid var(--border);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-left:24px;
-  font-size:16px;color:var(--muted);
+  flex-shrink:0;margin-left:20px;font-size:16px;color:var(--muted);
   transition:transform .4s,background .3s,color .3s,border-color .3s;
 }
-.servico-item.open .servico-arrow{transform:rotate(45deg);background:var(--pill2);color:#040404;border-color:var(--pill2)}
+.servico-item.open .servico-arrow{
+  transform:rotate(45deg);
+  background:var(--pill2);color:#040404;border-color:var(--pill2);
+}
 .servico-body{
   max-height:0;overflow:hidden;
   transition:max-height .5s cubic-bezier(.4,0,.2,1),padding .4s;
-  padding:0 0 0 72px;
+  padding-left:64px;
 }
-.servico-item.open .servico-body{max-height:360px;padding:0 0 40px 72px}
+.servico-item.open .servico-body{max-height:360px;padding:0 0 36px 64px}
 .servico-body p{
   font-size:16px;font-weight:300;color:var(--muted);
-  line-height:1.85;max-width:600px;margin-bottom:24px;
+  line-height:1.85;max-width:580px;margin-bottom:20px;
 }
-.servico-includes{display:flex;flex-wrap:wrap;gap:10px}
-.include-chip{
-  padding:7px 16px;background:rgba(221,215,215,.06);
-  border:1px solid rgba(221,215,215,.12);border-radius:3px;
-  font-size:12px;color:rgba(240,237,232,.6);
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  padding:7px 14px;
+  background:rgba(221,215,215,.05);
+  border:1px solid rgba(221,215,215,.1);
+  border-radius:3px;font-size:12px;
+  color:rgba(240,237,232,.55);
 }
 
-  /* PORTFÓLIO */
-.portfolio{padding:130px 64px;background:var(--bg2);border-top:1px solid var(--border)}
-.portfolio-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px}
-.portfolio-link-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:14px 28px;border:1px solid var(--border);
-  font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;border-radius:3px;
-  transition:border-color .3s,color .3s,background .3s;
-}
-.portfolio-link-btn:hover{border-color:var(--pill2);color:var(--pill2);background:rgba(179,190,217,.05)}
-.portfolio-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  margin-bottom:48px;
-}
-.p-thumb{aspect-ratio:4/5;overflow:hidden;position:relative;background:var(--card)}
-.p-thumb img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  filter:brightness(.6) saturate(.7);
-  transition:transform .6s cubic-bezier(.25,.46,.45,.94),filter .4s;
-}
-.p-thumb:hover img{transform:scale(1.05);filter:brightness(.4) saturate(.5)}
-.p-thumb-info{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  justify-content:flex-end;padding:24px;
-  background:linear-gradient(to top,rgba(4,4,4,.9) 0%,transparent 60%);
-}
-.p-thumb-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--pill2);margin-bottom:6px}
-.p-thumb-name{
-  font-family:'Playfair Display',serif;
-  font-size:17px;font-weight:600;color:var(--white);line-height:1.3;
-}
-.portfolio-cta{text-align:center}
-
-/* CONTATO */
+/* ── CONTATO ── */
 .contato{
   padding:130px 64px;
-  display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
   border-top:1px solid var(--border);
 }
 .contato-desc{
   font-size:17px;font-weight:300;color:var(--muted);
-  line-height:1.8;margin-bottom:40px;
+  line-height:1.8;margin-bottom:36px;
 }
 .contato-desc strong{color:var(--text);font-weight:500}
 .wa-btn{
   display:inline-flex;align-items:center;gap:12px;
-  padding:18px 36px;background:#25D366;color:#fff;
-  font-size:13px;font-weight:600;letter-spacing:1px;
+  padding:17px 32px;background:#25D366;color:#fff;
+  font-size:13px;font-weight:600;letter-spacing:.5px;
   text-decoration:none;border-radius:4px;
-  transition:background .3s,transform .2s;margin-bottom:48px;
+  transition:background .3s,transform .2s;margin-bottom:40px;
 }
 .wa-btn:hover{background:#1ebe5a;transform:translateY(-2px)}
 .wa-btn svg{width:20px;height:20px;flex-shrink:0}
-.social-list{display:flex;flex-direction:column;gap:10px}
+.social-list{display:flex;flex-direction:column;gap:8px}
 .social-item{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;border:1px solid var(--border);border-radius:3px;
-  text-decoration:none;color:var(--muted);font-size:13px;letter-spacing:1px;
+  padding:13px 18px;border:1px solid var(--border);border-radius:3px;
+  text-decoration:none;color:var(--muted);font-size:13px;letter-spacing:.5px;
   transition:border-color .3s,color .3s;
 }
 .social-item:hover{border-color:rgba(179,190,217,.35);color:var(--text)}
 .social-item span:last-child{font-size:11px;opacity:.5}
 
-/* FORM */
-.contato-form{display:flex;flex-direction:column;gap:16px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:8px}
-.form-group label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.form-group input,
-.form-group select,
-.form-group textarea{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
+/* form */
+.form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fg label{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+}
+.fg input,.fg select,.fg textarea{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
   color:var(--text);font-family:'Inter',sans-serif;
-  font-size:15px;font-weight:300;
-  padding:14px 18px;border-radius:3px;
+  font-size:14px;font-weight:300;padding:13px 16px;border-radius:3px;
   outline:none;transition:border-color .3s;-webkit-appearance:none;
 }
-.form-group select{cursor:pointer}
-.form-group select option{background:#111;color:var(--text)}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{border-color:rgba(179,190,217,.5)}
-.form-group textarea{resize:vertical;min-height:120px}
-.form-submit{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:16px 36px;background:var(--btn-bg);color:#040404;
+.fg select{cursor:pointer}
+.fg select option{background:#111;color:var(--text)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(179,190,217,.5)}
+.fg textarea{resize:vertical;min-height:110px}
+.form-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:15px 32px;background:var(--btn-bg);color:#040404;
   font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
   border:none;border-radius:3px;cursor:pointer;
-  transition:background .3s,transform .2s;font-family:'Inter',sans-serif;
+  font-family:'Inter',sans-serif;transition:background .3s,transform .2s;
 }
-.form-submit:hover{background:var(--btn-hover);transform:translateY(-2px)}
-.form-note{font-size:12px;color:var(--muted);margin-top:4px}
+.form-btn:hover{background:var(--btn-hover);transform:translateY(-2px)}
+.form-note{font-size:11px;color:var(--muted)}
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer{
-  padding:48px 64px;border-top:1px solid var(--border);
+  padding:44px 64px;border-top:1px solid var(--border);
   display:flex;justify-content:space-between;align-items:center;
 }
 .footer-logo{
-  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;
+  font-family:'Playfair Display',serif;font-size:17px;font-weight:700;
   color:rgba(240,237,232,.3);
 }
 .footer-logo span{color:var(--pill2)}
-.footer-links{display:flex;gap:32px}
+.footer-links{display:flex;gap:28px}
 .footer-links a{
   font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
   color:rgba(240,237,232,.2);text-decoration:none;transition:color .3s;
 }
 .footer-links a:hover{color:var(--muted)}
-.footer-copy{font-size:11px;color:rgba(255,255,255,.15)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.12)}
 
-/* FADE */
-.fade{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+/* ── FADE IN ── */
+.fade{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
 .fade.on{opacity:1;transform:none}
-.fade-d1{transition-delay:.1s}.fade-d2{transition-delay:.2s}.fade-d3{transition-delay:.3s}
+.fd1{transition-delay:.1s}.fd2{transition-delay:.2s}.fd3{transition-delay:.3s}
 
-/* RESPONSIVE */
+/* ══════════════════════════════
+   RESPONSIVE — MOBILE FIRST
+   ══════════════════════════════ */
+
+/* Tablet */
 @media(max-width:1024px){
-  nav{padding:20px 32px}
+  nav{padding:20px 40px}
+  .nav-links{gap:28px}
+  .hero{padding:110px 40px 72px;gap:40px}
+  .sobre{padding:100px 40px;gap:60px}
+  .servicos{padding:100px 40px}
+  .contato{padding:100px 40px;gap:60px}
+  footer{padding:40px 40px}
+}
+
+/* Mobile */
+@media(max-width:768px){
+  /* nav */
+  nav{padding:18px 24px}
   .nav-links,.nav-cta{display:none}
-  .hero,.sobre,.contato{grid-template-columns:1fr;padding:100px 32px 72px}
-  .hero-right{max-width:280px;margin:0 auto}
-  .sobre{gap:48px}
-  .servicos,.portfolio{padding:100px 32px}
-  .contato{padding:100px 32px;gap:60px}
-  .portfolio-grid{grid-template-columns:1fr 1fr}
+  .nav-burger{display:flex}
+
+  /* hero — coluna única, foto em cima */
+  .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:100px 24px 64px;
+    gap:0;
+  }
+  .hero-right{
+    order:-1; /* foto ACIMA do texto */
+    justify-content:center;
+    margin-bottom:40px;
+  }
+  .photo-wrap{max-width:260px}
+  .hero-left{text-align:center}
+  .hero-eyebrow{margin-left:auto;margin-right:auto}
+  .hero-actions{justify-content:center}
+  .hero-glow{display:none}
+
+  /* headline breaks naturally on mobile */
+  .hero-headline{font-size:clamp(18px,5vw,26px)}
+
+  /* ticker */
+  .ticker-item{padding:0 24px;font-size:10px}
+
+  /* sobre — coluna única */
+  .sobre{
+    grid-template-columns:1fr;
+    padding:80px 24px;gap:48px;
+  }
+  .sobre-stats{flex-direction:row}
+  .stat-box{padding:20px 16px}
+  .stat-val{font-size:32px}
+
+  /* serviços */
+  .servicos{padding:80px 24px}
+  .servico-tags{display:none} /* oculta tags no mobile pra não quebrar layout */
+  .servico-name{font-size:20px;padding:0 12px}
+  .servico-body{padding-left:0}
+  .servico-item.open .servico-body{padding:0 0 28px 0}
+
+  /* contato — coluna única */
+  .contato{
+    grid-template-columns:1fr;
+    padding:80px 24px;gap:56px;
+  }
   .form-row{grid-template-columns:1fr}
-  footer{flex-direction:column;gap:20px;text-align:center;padding:40px 32px}
-  .footer-links{justify-content:center;flex-wrap:wrap}
-  .sobre-numbers-row{flex-direction:column;gap:2px}
+
+  /* footer */
+  footer{
+    flex-direction:column;gap:20px;
+    text-align:center;padding:36px 24px;
+  }
+  .footer-links{justify-content:center;flex-wrap:wrap;gap:20px}
+}
+
+/* Small phones */
+@media(max-width:400px){
+  .hero-name{font-size:44px}
+  .photo-wrap{max-width:220px}
+  .btn-main{padding:14px 20px;font-size:11px}
 }
 </style>
 </head>
@@ -424,7 +507,19 @@ footer{
     <a href="#contato">Contato</a>
   </div>
   <a href="https://wa.me/5521976590941?text=Oi%20Karina!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" class="nav-cta">Solicitar orçamento</a>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="mobileMenu">
+  <button class="nav-mobile-close" id="menuClose">✕</button>
+  <a href="#sobre" onclick="closeMenu()">Sobre</a>
+  <a href="#servicos" onclick="closeMenu()">Serviços</a>
+  <a href="https://www.behance.net/karinacsouza" target="_blank" onclick="closeMenu()">Portfólio</a>
+  <a href="#contato" onclick="closeMenu()">Contato</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -435,29 +530,25 @@ footer{
       <span class="hero-eyebrow-dot"></span>
       Social Media & Designer de Posts
     </div>
-
-    <h1 class="hero-name">
-      Karina<br><em>Souza</em>
-    </h1>
-
-    <!-- FRASE ESTILO DA IMAGEM -->
+    <h1 class="hero-name">Karina<br><em>Souza</em></h1>
     <p class="hero-headline">
       Transformando <span class="word-italic">ideias</span><br>
       em <span class="pill-outline">design</span> e <span class="pill-filled">estratégias</span><br>
       em resultados!
     </p>
-
     <div class="hero-actions">
       <a href="https://wa.me/5521976590941?text=Oi%20Karina!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" class="btn-main">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Solicitar orçamento
       </a>
-      <a href="https://www.behance.net/karinacsouza" class="btn-ghost">Ver portfólio →</a>
+      <a href="https://www.behance.net/karinacsouza" target="_blank" class="btn-ghost">Ver portfólio →</a>
     </div>
   </div>
 
-  <div class="hero-right fade fade-d2">
+  <!-- SUA FOTO — sem filtro, sem gradiente, sem glow -->
+  <div class="hero-right fade fd2">
     <div class="photo-wrap">
+      <img src="karina-photo.jpg" alt="Karina Souza">
     </div>
   </div>
 </section>
@@ -482,7 +573,8 @@ footer{
 
 <!-- SOBRE -->
 <section class="sobre" id="sobre">
-  <div class="sobre-bg"></div>
+  <!-- FOTO DO WORKSPACE COMO FUNDO -->
+  <img class="sobre-bg-img" src="workspace.png" alt="">
   <div class="sobre-overlay"></div>
 
   <div class="sobre-left fade">
@@ -495,10 +587,20 @@ footer{
     </div>
   </div>
 
-  <div class="sobre-right fade fade-d2">
-     
+  <!-- FOTO DO WORKSPACE NO LADO DIREITO -->
+  <div class="sobre-right fade fd2">
+    <div class="sobre-img-box">
+      <img src="workspace.png" alt="Workspace">
+      <div class="sobre-img-caption">Rio de Janeiro, Brasil</div>
     </div>
-    
+    <div class="sobre-stats">
+      <div class="stat-box">
+        <div class="stat-val">5+</div>
+        <div class="stat-label">Anos de experiência</div>
+      </div>
+      <div class="stat-box" style="border-left:none">
+        <div class="stat-val">100%</div>
+        <div class="stat-label">Foco em conversão</div>
       </div>
     </div>
   </div>
@@ -510,23 +612,26 @@ footer{
     <div class="section-tag">Serviços</div>
     <h2>Como posso <em>te ajudar</em></h2>
   </div>
-  <div class="servicos-list fade fade-d1">
+  <div class="servicos-list fade fd1">
 
     <div class="servico-item">
       <div class="servico-header" onclick="toggleServico(this)">
         <span class="servico-num">01.</span>
         <span class="servico-name">Gestão de Mídias Sociais</span>
-        <div class="servico-tags"><span class="servico-tag">Instagram</span><span class="servico-tag">Facebook</span></div>
+        <div class="servico-tags">
+          <span class="servico-tag">Instagram</span>
+          <span class="servico-tag">Facebook</span>
+        </div>
         <div class="servico-arrow">+</div>
       </div>
       <div class="servico-body">
         <p>Para quem busca presença digital consistente e estratégica. Cuido de tudo — do planejamento ao design e publicação — para que seu perfil atraia, engaje e converta clientes todos os dias.</p>
-        <div class="servico-includes">
-          <span class="include-chip">Planejamento mensal de conteúdo</span>
-          <span class="include-chip">Design de posts e stories</span>
-          <span class="include-chip">Calendário editorial</span>
-          <span class="include-chip">Publicação e agendamento</span>
-          <span class="include-chip">Relatório mensal</span>
+        <div class="chips">
+          <span class="chip">Planejamento mensal de conteúdo</span>
+          <span class="chip">Design de posts e stories</span>
+          <span class="chip">Calendário editorial</span>
+          <span class="chip">Publicação e agendamento</span>
+          <span class="chip">Relatório mensal</span>
         </div>
       </div>
     </div>
@@ -535,16 +640,19 @@ footer{
       <div class="servico-header" onclick="toggleServico(this)">
         <span class="servico-num">02.</span>
         <span class="servico-name">Design de Posts Estratégicos</span>
-        <div class="servico-tags"><span class="servico-tag">Feed</span><span class="servico-tag">Stories</span></div>
+        <div class="servico-tags">
+          <span class="servico-tag">Feed</span>
+          <span class="servico-tag">Stories</span>
+        </div>
         <div class="servico-arrow">+</div>
       </div>
       <div class="servico-body">
         <p>Posts pensados para gerar conexão, autoridade e vendas. Cada peça é criada com intenção visual e estratégica alinhada ao seu posicionamento de marca.</p>
-        <div class="servico-includes">
-          <span class="include-chip">Posts para feed</span>
-          <span class="include-chip">Carrosséis</span>
-          <span class="include-chip">Stories e Reels (thumb)</span>
-          <span class="include-chip">Linha visual consistente</span>
+        <div class="chips">
+          <span class="chip">Posts para feed</span>
+          <span class="chip">Carrosséis</span>
+          <span class="chip">Stories e Reels (thumb)</span>
+          <span class="chip">Linha visual consistente</span>
         </div>
       </div>
     </div>
@@ -553,16 +661,19 @@ footer{
       <div class="servico-header" onclick="toggleServico(this)">
         <span class="servico-num">03.</span>
         <span class="servico-name">Análise de Perfil</span>
-        <div class="servico-tags"><span class="servico-tag">Estratégia</span><span class="servico-tag">Diagnóstico</span></div>
+        <div class="servico-tags">
+          <span class="servico-tag">Estratégia</span>
+          <span class="servico-tag">Diagnóstico</span>
+        </div>
         <div class="servico-arrow">+</div>
       </div>
       <div class="servico-body">
         <p>Para quem quer entender o que está travando o crescimento e a conversão do perfil. Analiso estrategicamente bio, feed, identidade visual e conteúdo, e entrego um plano de ação personalizado.</p>
-        <div class="servico-includes">
-          <span class="include-chip">Análise completa do perfil</span>
-          <span class="include-chip">Diagnóstico de bio e feed</span>
-          <span class="include-chip">Plano de conteúdo personalizado</span>
-          <span class="include-chip">Orientações de posicionamento</span>
+        <div class="chips">
+          <span class="chip">Análise completa do perfil</span>
+          <span class="chip">Diagnóstico de bio e feed</span>
+          <span class="chip">Plano de conteúdo personalizado</span>
+          <span class="chip">Orientações de posicionamento</span>
         </div>
       </div>
     </div>
@@ -598,19 +709,19 @@ footer{
     </div>
   </div>
 
-  <div class="fade fade-d2">
-    <form class="contato-form" onsubmit="sendWhatsApp(event)">
+  <div class="fade fd2">
+    <form class="form" onsubmit="sendWA(event)">
       <div class="form-row">
-        <div class="form-group">
+        <div class="fg">
           <label>Seu nome</label>
           <input type="text" id="f-nome" placeholder="Ex: Ana Lima" required>
         </div>
-        <div class="form-group">
+        <div class="fg">
           <label>Tipo de negócio</label>
           <input type="text" id="f-negocio" placeholder="Ex: Clínica médica" required>
         </div>
       </div>
-      <div class="form-group">
+      <div class="fg">
         <label>O que você precisa?</label>
         <select id="f-servico" required>
           <option value="">Selecione um serviço…</option>
@@ -620,7 +731,7 @@ footer{
           <option>Ainda não sei / Quero conversar</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="fg">
         <label>Orçamento aproximado</label>
         <select id="f-orcamento">
           <option value="">Selecione…</option>
@@ -631,11 +742,11 @@ footer{
           <option>Projeto pontual</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="fg">
         <label>Conta mais (opcional)</label>
         <textarea id="f-msg" placeholder="Descreva brevemente seu negócio ou o que precisa…"></textarea>
       </div>
-      <button type="submit" class="form-submit">Enviar pelo WhatsApp →</button>
+      <button type="submit" class="form-btn">Enviar pelo WhatsApp →</button>
       <p class="form-note">Você será redirecionado ao WhatsApp com sua mensagem preenchida.</p>
     </form>
   </div>
@@ -647,23 +758,34 @@ footer{
   <div class="footer-links">
     <a href="#sobre">Sobre</a>
     <a href="#servicos">Serviços</a>
-  <a href="https://www.behance.net/karinacsouza" target="_blank">Portfólio</a>
+    <a href="https://www.behance.net/karinacsouza" target="_blank">Portfólio</a>
     <a href="#contato">Contato</a>
   </div>
   <div class="footer-copy">© 2026 Karina Souza · Rio de Janeiro</div>
 </footer>
 
 <script>
+// Nav scroll
 const nav = document.getElementById('nav')
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60)
 })
 
+// Mobile menu
+const burger = document.getElementById('burger')
+const mobileMenu = document.getElementById('mobileMenu')
+const menuClose = document.getElementById('menuClose')
+burger.addEventListener('click', () => mobileMenu.classList.add('open'))
+menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'))
+function closeMenu(){ mobileMenu.classList.remove('open') }
+
+// Fade in on scroll
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on') })
 }, { threshold: 0.1 })
 document.querySelectorAll('.fade').forEach(el => obs.observe(el))
 
+// Accordion
 function toggleServico(header) {
   const item = header.parentElement
   const isOpen = item.classList.contains('open')
@@ -671,15 +793,18 @@ function toggleServico(header) {
   if (!isOpen) item.classList.add('open')
 }
 
-function sendWhatsApp(e) {
+// WhatsApp form
+function sendWA(e) {
   e.preventDefault()
   const nome = document.getElementById('f-nome').value
   const negocio = document.getElementById('f-negocio').value
   const servico = document.getElementById('f-servico').value
   const orcamento = document.getElementById('f-orcamento').value
   const msg = document.getElementById('f-msg').value
-  const texto = `Oi Karina! Vim pelo seu site e gostaria de um orçamento.%0A%0A*Nome:* ${nome}%0A*Negócio:* ${negocio}%0A*Serviço:* ${servico}${orcamento ? '%0A*Orçamento:* ' + orcamento : ''}${msg ? '%0A*Mensagem:* ' + msg : ''}`
-  window.open(`https://wa.me/5521976590941?text=${texto}`, '_blank')
+  let txt = `Oi Karina! Vim pelo seu site e gostaria de um orçamento.%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*Negócio:* ${encodeURIComponent(negocio)}%0A*Serviço:* ${encodeURIComponent(servico)}`
+  if(orcamento) txt += `%0A*Orçamento:* ${encodeURIComponent(orcamento)}`
+  if(msg) txt += `%0A*Mensagem:* ${encodeURIComponent(msg)}`
+  window.open(`https://wa.me/5521976590941?text=${txt}`, '_blank')
 }
 </script>
 </body>
